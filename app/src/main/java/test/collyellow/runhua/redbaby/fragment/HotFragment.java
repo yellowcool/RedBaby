@@ -19,6 +19,6 @@ public class HotFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return DataBindingUtil.inflate(inflater, R.layout.home_fragment,container,false).getRoot();
+        return DataBindingUtil.inflate(inflater, R.layout.hot_fragment,container,false).getRoot();
     }
 }
