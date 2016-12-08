@@ -49,6 +49,9 @@ public class HomeFragment extends Fragment {
                 case R.id.home_card_hot:
                     Log.e("hot", "hothot");
                     break;
+                case R.id.search_ib:
+                    Log.e("search","serchimageButton");
+                    break;
             }
         }
     }
