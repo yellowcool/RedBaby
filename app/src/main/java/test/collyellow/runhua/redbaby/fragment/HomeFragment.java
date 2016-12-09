@@ -4,11 +4,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 
@@ -50,7 +52,7 @@ public class HomeFragment extends Fragment {
                     Log.e("hot", "hothot");
                     break;
                 case R.id.search_ib:
-                    Log.e("search","serchimageButton");
+                    Log.e("search", "serchimageButton");
                     break;
             }
         }
@@ -74,14 +76,42 @@ public class HomeFragment extends Fragment {
         urls.add("http://4493bz.1985t.com/uploads/allimg/150127/4-15012G52133.jpg");
         urls.add("http://img01.taopic.com/141116/318764-14111610353113.jpg");
         urls.add("http://pic69.nipic.com/file/20150614/20677594_124458962000_2.jpg");
-        for (int i = 0;i < 5;i++){
+        for (int i = 0; i < 5; i++) {
             ImageView imageView = new ImageView(App.context);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             Glide.with(this).load(urls.get(i)).into(imageView);
             lists.add(imageView);
         }
-        Log.e("lists",lists.size()+"=========");
+        Log.e("lists", lists.size() + "=========");
         homeMyViewPagerAdapter = new HomeMyViewPagerAdapter(lists);
         binding.homeMyviewpager.setAdapter(homeMyViewPagerAdapter);
+        for (int i = 0; i < urls.size(); i++) {
+            View view = new View(App.context);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(30,30);
+            params.leftMargin = 30;
+            view.setLayoutParams(params);
+            view.setBackgroundResource(R.drawable.viewpager_red_pot_selector);
+            binding.viewpagerRedPot.addView(view);
+        }
+        binding.viewpagerRedPot.getChildAt(0).setSelected(true);
+        binding.homeMyviewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0;i < urls.size();i++){
+                    binding.viewpagerRedPot.getChildAt(i).setSelected(false);
+                }
+                binding.viewpagerRedPot.getChildAt(position).setSelected(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
