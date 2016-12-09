@@ -1,5 +1,6 @@
 package test.collyellow.runhua.redbaby.fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import test.collyellow.runhua.redbaby.App;
 import test.collyellow.runhua.redbaby.R;
+import test.collyellow.runhua.redbaby.activity.LimiteTimeActivity;
 import test.collyellow.runhua.redbaby.adapter.HomeMyViewPagerAdapter;
 import test.collyellow.runhua.redbaby.databinding.HomeFragmentBinding;
 
@@ -37,6 +39,8 @@ public class HomeFragment extends Fragment {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.home_card_limit_time:
+                    Intent intent = new Intent(App.context, LimiteTimeActivity.class);
+                    startActivity(intent);
                     Log.e("limite", "limite");
                     break;
                 case R.id.home_card_tuijian:
@@ -82,7 +86,6 @@ public class HomeFragment extends Fragment {
             Glide.with(this).load(urls.get(i)).into(imageView);
             lists.add(imageView);
         }
-        Log.e("lists", lists.size() + "=========");
         homeMyViewPagerAdapter = new HomeMyViewPagerAdapter(lists);
         binding.homeMyviewpager.setAdapter(homeMyViewPagerAdapter);
         for (int i = 0; i < urls.size(); i++) {
